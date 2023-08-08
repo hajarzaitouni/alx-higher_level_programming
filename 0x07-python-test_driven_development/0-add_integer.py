@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Defines a module that add two int/float numbers"""
+
+
 def add_integer(a, b=98):
     """adding two integers.
 

@@ -16,6 +16,10 @@ class TestMaxInteger(unittest.TestCase):
         """tests list of unordered integers"""
         self.assertEqual(max_integer([5, 6, 0, 10]), 10)
 
+    def test_max_big_list(self):
+        """tests max at the biginning of the list"""
+        self.assertEqual(max_integer([50, 6, 0, 10]), 50)
+
     def test_comb_list(self):
         """tests a list of combined numbers, float/int"""
         self.assertEqual(max_integer([1.2, 5, 100.6, 2]), 100.6)

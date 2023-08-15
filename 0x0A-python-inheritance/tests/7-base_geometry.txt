@@ -21,6 +21,14 @@ Testing for class documentation:
     >>> len(cl) > 1
     True
 
+Testing for method documentation:
+    >>> md1 = __import__("7-base_geometry").BaseGeometry.area.__doc__
+    >>> len(md1) > 1
+    True
+
+    >>> md2 = __import__("7-base_geometry").BaseGeometry.integer_validator.__doc__
+    >>> len(md2) > 1
+    True
 
 Testing area() method
 =====================

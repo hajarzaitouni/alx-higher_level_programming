@@ -74,3 +74,65 @@ class TestRectangle(unittest.TestCase):
         """Testing with no arguments"""
         with self.assertRaises(TypeError):
             Rectangle()
+
+    def test_unique_arg(self):
+        """Testing for only one argument"""
+        with self.assertRaises(TypeError):
+            Rectangle(1)
+
+    def test_attr_TypeError(self):
+        """Testing width, height, x and y for not integer values"""
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            r1 = Rectangle(5.5, 2, 0, 0, 12)
+
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            r2 = Rectangle("Hajar", 2, 0, 0, 12)
+
+        with self.assertRaisesRegex(TypeError, "width must be an integer"):
+            r3 = Rectangle(None, 2)
+
+        with self.assertRaisesRegex(TypeError, "height must be an integer"):
+            r4 = Rectangle(10, "Alx")
+
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            r5 = Rectangle(10, 2, 4.54, 0, 23)
+
+        with self.assertRaisesRegex(TypeError, "x must be an integer"):
+            r6 = Rectangle(10, 2, None, 0, 23)
+
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            r7 = Rectangle(10, 2, 0, [1, 2], 23)
+
+        with self.assertRaisesRegex(TypeError, "y must be an integer"):
+            r8 = Rectangle(10, 2, 0, None, 23)
+
+    def test_wid_hei_ValueError(self):
+        """Testing with values <= 0 for width and height attributes"""
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            r1 = Rectangle(0, 2)
+
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            r2 = Rectangle(-3, 2)
+
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            r3 = Rectangle(2, 0)
+
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            r4 = Rectangle(2, -6)
+
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            r5 = Rectangle(0, 0)
+
+    def test_x_y_ValueError(self):
+        """Testing with values less than 0 for x and y attributes"""
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            r1 = Rectangle(2, 10, -1)
+
+        with self.assertRaisesRegex(ValueError, "x must be >= 0"):
+            r2 = Rectangle(2, 10, -1, -2)
+
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            r2 = Rectangle(2, 10, 0, -2)
+
+        with self.assertRaisesRegex(ValueError, "y must be >= 0"):
+            r2 = Rectangle(2, 10, 2, -3)

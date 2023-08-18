@@ -136,3 +136,23 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             r2 = Rectangle(2, 10, 2, -3)
+
+    def test_area(self):
+        """Testing for area values"""
+        r1 = Rectangle(2, 3)
+        r2 = Rectangle(5, 10, 0, 0, 20)
+        self.assertEqual(r1.area(), 6)
+        self.assertEqual(r2.area(), 50)
+
+    def test_area_args(self):
+        """Testing too many args for area method"""
+        r1 = Rectangle(2, 4)
+        with self.assertRaises(TypeError):
+            r1.area(1)
+
+    def test_change_attr_value_area(self):
+        """Testing the value area by changing width and height values"""
+        r1 = Rectangle(1, 1, 0, 0, 13)
+        r1.width = 2
+        r1.height = 6
+        self.assertEqual(r1.area(), 12)

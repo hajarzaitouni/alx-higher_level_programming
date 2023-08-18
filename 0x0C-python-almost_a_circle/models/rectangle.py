@@ -27,41 +27,41 @@ class Rectangle(Base):
         super().__init__(id)
 
     @property
-    """get the width of the Rectangle"""
     def width(self):
+        """get the width of the Rectangle"""
         return self.__width
 
     @width.setter
-    """set the width of the Rectangle"""
     def width(self, value):
+        """set the width of the Rectangle"""
         self.__width = value
 
     @property
-    """get the height of the Rectangle"""
     def height(self):
+        """get the height of the Rectangle"""
         return self.__height
 
     @height.setter
-    """set the height of the Rectangle"""
     def height(self, value):
+        """set the height of the Rectangle"""
         self.__height = value
 
     @property
-    """get the x of the Rectangle"""
     def x(self):
+        """get the x of the Rectangle"""
         return self.__x
 
     @x.setter
-    """set the x of the Rectangle"""
     def x(self, value):
+        """set the x of the Rectangle"""
         self.__x = value
 
     @property
-    """get the y of the Rectangle"""
     def y(self):
+        """get the y of the Rectangle"""
         return self.__y
 
     @y.setter
-    """set the y of the Rectangle"""
     def y(self, value):
+        """set the y of the Rectangle"""
         self.__y = value

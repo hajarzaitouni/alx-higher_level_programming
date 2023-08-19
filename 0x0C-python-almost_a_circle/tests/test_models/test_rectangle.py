@@ -183,3 +183,55 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(2, 5, 1, 2, 22)
         with self.assertRaises(TypeError):
             r1.__str__(2)
+
+    def test_update_id(self, *args):
+        """Testing with id=None"""
+        r1 = Rectangle(10, 10, 10, 10, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 10/10 - 10/10")
+        r1.update(89)
+        self.assertEqual(str(r1), "[Rectangle] (89) 10/10 - 10/10")
+
+    def test_update_two_args(self, *args):
+        """Testing update with two arguments"""
+        r1 = Rectangle(10, 10, 10, 10, 12)
+        r1.update(89, 2)
+        self.assertEqual(str(r1), "[Rectangle] (89) 10/10 - 2/10")
+
+    def test_update_three_args(self, *args):
+        """Testing update with three args"""
+        r1 = Rectangle(10, 10, 10, 10, 12)
+        r1.update(89, 2, 3)
+        self.assertEqual(str(r1), "[Rectangle] (89) 10/10 - 2/3")
+
+    def test_update_four_args(self):
+        """Testing update with four args"""
+        r1 = Rectangle(10, 10, 10, 10, 12)
+        r1.update(89, 2, 3, 4)
+        self.assertEqual(str(r1), "[Rectangle] (89) 4/10 - 2/3")
+
+    def test_update_all_args(self):
+        """Testing update with all args"""
+        r1 = Rectangle(10, 10, 10, 10, 12)
+        r1.update(89, 2, 3, 4, 5)
+        self.assertEqual(str(r1), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_update_no_args(self):
+        """Testing update with no args given"""
+        r1 = Rectangle(10, 10, 10, 10, 12)
+        r1.update()
+        self.assertEqual(str(r1), "[Rectangle] (12) 10/10 - 10/10")
+
+    def test_update_two_times(self):
+        """Testing update multiple times"""
+        r1 = Rectangle(1, 1, 0, 0, 5)
+        r1.update(89)
+        r1.update(30, 10, 10, 10, 10)
+        self.assertEqual(str(r1), "[Rectangle] (30) 10/10 - 10/10")
+
+    def test_update_more_args(self):
+        """Testing with more than five arguments"""
+        r1 = Rectangle(10, 10, 10, 10, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 10/10 - 10/10")
+        r1.height = 20
+        r1.update(89, 1, 2, 3, 4, 5)
+        self.assertEqual(str(r1), "[Rectangle] (89) 3/4 - 1/2")

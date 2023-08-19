@@ -3,6 +3,9 @@
 Unittest for Rectangle class
 """
 import unittest
+import io
+import sys
+import unittest.mock
 from models.rectangle import Rectangle
 
 
@@ -156,3 +159,9 @@ class TestRectangle(unittest.TestCase):
         r1.width = 2
         r1.height = 6
         self.assertEqual(r1.area(), 12)
+
+    def test_display_more_args(self):
+        """Testing with x and y equals to zero"""
+        r1 = Rectangle(3, 4)
+        with self.assertRaises(TypeError):
+            r1.display(2)

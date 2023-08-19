@@ -165,3 +165,21 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(3, 4)
         with self.assertRaises(TypeError):
             r1.display(2)
+
+    def test_str_def_args(self):
+        """Testing __str__ with default args"""
+        r1 = Rectangle(2, 3)
+        output = "[Rectangle] ({}) 0/0 - 2/3".format(r1.id)
+        self.assertEqual(str(r1), output)
+
+    def test_str_non_defls_args(self):
+        """Testing with non defaults args"""
+        r1 = Rectangle(2, 5, 1, 2, 12)
+        output = "[Rectangle] ({}) 1/2 - 2/5".format(r1.id)
+        self.assertEqual(r1.__str__(), output)
+
+    def test_more_args(self):
+        """Testing one argument for str method"""
+        r1 = Rectangle(2, 5, 1, 2, 22)
+        with self.assertRaises(TypeError):
+            r1.__str__(2)

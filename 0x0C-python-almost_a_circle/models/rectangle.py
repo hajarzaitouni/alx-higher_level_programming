@@ -103,23 +103,44 @@ class Rectangle(Base):
                                                        self.__width,
                                                        self.__height)
 
-    def update(self, *args):
-        """Update the class Rectangle"""
+    def update(self, *args, **kwargs):
+        """Update the class Rectangle
+
+        Args:
+            *args (int): new attribute values
+            **kwargs (dict): key/value pairs of attributes
+        """
         if args:
             i = 0
             for arg in args:
                 if i == 0:
                     if arg is None:
-                        super().__init__(self.__width, self.__height, self.__x,
-                                         self.__y)
+                        self.__init__(self.width, self.height, self.x,
+                                      self.y)
                     else:
                         self.id = arg
                 elif i == 1:
-                    self.__width = arg
+                    self.width = arg
                 elif i == 2:
-                    self.__height = arg
+                    self.height = arg
                 elif i == 3:
-                    self.__x = arg
+                    self.x = arg
                 elif i == 4:
-                    self.__y = arg
+                    self.y = arg
                 i += 1
+        elif kwargs:
+            for key, value in kwargs.items():
+                if key == "id":
+                    if value is None:
+                        self.__init__(self.width, self.height, self.x,
+                                      self.y)
+                    else:
+                        self.id = value
+                elif key == "width":
+                    self.width = value
+                elif key == "height":
+                    self.height = value
+                elif key == "x":
+                    self.x = value
+                elif key == "y":
+                    self.y = value

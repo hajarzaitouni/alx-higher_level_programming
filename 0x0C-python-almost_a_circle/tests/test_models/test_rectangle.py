@@ -3,9 +3,6 @@
 Unittest for Rectangle class
 """
 import unittest
-import io
-import sys
-import unittest.mock
 from models.rectangle import Rectangle
 
 
@@ -383,3 +380,7 @@ class TestRectangle(unittest.TestCase):
             r1.update(y=-3, width=0)
         with self.assertRaisesRegex(ValueError, "height must be > 0"):
             r1.update(id=89, height=0, x=-3)
+
+
+if __name__ == '__main__':
+    unittest.main()

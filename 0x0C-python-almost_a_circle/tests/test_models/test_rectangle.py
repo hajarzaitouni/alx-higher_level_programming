@@ -4,12 +4,17 @@ Unittest for Rectangle class
 """
 import unittest
 from models.rectangle import Rectangle
+from models.base import Base
 
 
 class TestRectangle(unittest.TestCase):
     """
     Tests for Rectangle class
     """
+
+    def test_isInstance_Base(self):
+        """Testing Rectangle inheritor of Base"""
+        self.assertIsInstance(Rectangle(2, 3), Base)
 
     def test_deflt_args(self):
         """Testing with two arguments, x, y and id are default arg"""

@@ -388,7 +388,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.to_dictionary(), valid_output)
 
     def test_to_dict_compare(self):
-        """Testing the output with update the attributes"""
+        """Testing with updating the attribute of a second rectangle"""
         r1 = Rectangle(2, 4, 3, 2, 89)
         r2 = Rectangle(1, 1)
         r1_dictionary = r1.to_dictionary()

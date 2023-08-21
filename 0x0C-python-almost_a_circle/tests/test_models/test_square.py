@@ -399,6 +399,26 @@ class TestSquare(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
             s1.update(x="invalid", y=-3, size=-2, id=89)
 
+    def test_to_dict(self):
+        """Testing the output to dictionary"""
+        s1 = Square(10, 2, 1, 89)
+        valid_output = {'id': 89, 'x': 2, 'size': 10, 'y': 1}
+        self.assertEqual(s1.to_dictionary(), valid_output)
+
+    def test_to_dict_compare(self):
+        """Testing with updating the attribute of a second rectangle"""
+        s1 = Square(10, 2, 1, 89)
+        s2 = Square(1, 1)
+        s1_dictionary = s1.to_dictionary()
+        s1.update(**s1_dictionary)
+        self.assertNotEqual(s1, s2)
+
+    def test_to_dict_more_args(self):
+        """Testing to_dict with too many args"""
+        s1 = Square(10, 2, 1, 89)
+        with self.assertRaises(TypeError):
+            s1.to_dictionary(1)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -101,6 +101,62 @@ class TestBase(unittest.TestCase):
         with self.assertRaises(TypeError):
             Base.to_json_string([], 2)
 
+    def test_save_to_file_two_rect(self):
+        """Testing saving to file two rectangles, dictionary representaion"""
+        r1 = Rectangle(3, 4, 2, 1, 12)
+        r2 = Rectangle(8, 2, 0, 0, 22)
+        Rectangle.save_to_file([r1, r2])
+        with open("Rectangle.json", "r") as f:
+            self.assertTrue(len(f.read()) == 106)
+
+    def test_save_to_file_two_square(self):
+        """Testing saving to file two squares, dictionary representaion"""
+        s1 = Square(4, 2, 1, 14)
+        s2 = Square(8, 2, 0, 68)
+        Square.save_to_file([s1, s2])
+        with open("Square.json", "r") as f:
+            self.assertTrue(len(f.read()) == 78)
+
+    def test_save_to_file_one_square(self):
+        """Testing saving to file one square using Base class"""
+        s1 = Square(4, 2, 1, 14)
+        Base.save_to_file([s1])
+        with open("Base.json", "r") as f:
+            self.assertTrue(len(f.read()) == 39)
+
+    def test_save_to_file_empty_list(self):
+        """Testing empty object lists"""
+        Base.save_to_file([])
+        with open("Base.json", "r") as f:
+            self.assertTrue(f.read(), "[]")
+
+    def test_save_to_file_overwrite(self):
+        """Testing overwrite the content of a file"""
+        r1 = Rectangle(3, 4, 2, 1, 12)
+        Rectangle.save_to_file([r1])
+        s1 = Square(4, 2, 1, 14)
+        Square.save_to_file([s1])
+        with open("Square.json", "r") as f:
+            self.assertTrue(len(f.read()) == 39)
+
+    def test_save_to_file_None(self):
+        """Testing None for object_lists"""
+        Base.save_to_file(None)
+        with open("Base.json", "r") as f:
+            self.assertTrue(f.read(), "[]")
+
+    def test_save_to_file_no_args(self):
+        """Testing save_to_file with no arguments"""
+        s1 = Square(4, 2, 1, 14)
+        with self.assertRaises(TypeError):
+            Square.save_to_file()
+
+    def test_save_to_file_more_args(self):
+        """Testing save to file with more arguments"""
+        s1 = Square(4, 2, 1, 14)
+        with self.assertRaises(TypeError):
+            Square.save_to_file([s1], 3)
+
 
 if __name__ == '__main__':
     unittest.main()

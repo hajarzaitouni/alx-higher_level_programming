@@ -196,6 +196,49 @@ class TestBase(unittest.TestCase):
         with self.assertRaises(TypeError):
             Rectangle.from_json_string("[]", 3)
 
+    def test_create_Rectangle_orig(self):
+        r1 = Rectangle(3, 5, 1, 0, 89)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual("[Rectangle] (89) 1/0 - 3/5", str(r1))
+
+    def test_create_Rectangle_new(self):
+        r1 = Rectangle(3, 5, 1, 0, 89)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual("[Rectangle] (89) 1/0 - 3/5", str(r2))
+
+    def test_create_Rectangle_Is(self):
+        r1 = Rectangle(3, 5, 1, 0, 89)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertIsNot(r1, r2)
+
+    def test_create_Rectangle_Equal(self):
+        r1 = Rectangle(3, 5, 1, 0, 89)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertNotEqual(r1, r2)
+
+    def test_create_Square(self):
+        s1 = Square(5, 1, 0, 89)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+        self.assertEqual("[Square] (89) 1/0 - 5", str(s1))
+        self.assertEqual("[Square] (89) 1/0 - 5", str(s2))
+
+    def test_create_square_Is(self):
+        s1 = Square(5, 1, 0, 89)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+        self.assertIsNot(s1, s2)
+
+    def test_create_square_Equal(self):
+        s1 = Square(5, 1, 0, 89)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+        self.assertNotEqual(s1, s2)
+
 
 if __name__ == '__main__':
     unittest.main()

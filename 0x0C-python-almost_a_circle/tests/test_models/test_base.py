@@ -239,6 +239,28 @@ class TestBase(unittest.TestCase):
         s2 = Square.create(**s1_dictionary)
         self.assertNotEqual(s1, s2)
 
+    def test_load_from_file_Rectangle(self):
+        r1 = Rectangle(10, 7, 2, 8, 12)
+        r2 = Rectangle(2, 4, 1, 0, 89)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file()
+        self.assertEqual(str(r1), str(list_rectangles_output[0]))
+        self.assertEqual(str(r2), str(list_rectangles_output[1]))
+
+    def test_load_from_file_Square(self):
+        s1 = Square(5, 1, 0, 89)
+        s2 = Square(7, 3, 1, 12)
+        list_squares_input = [s1, s2]
+        Square.save_to_file(list_squares_input)
+        list_squares_output = Square.load_from_file()
+        self.assertEqual(str(s1), str(list_squares_output[0]))
+        self.assertEqual(str(s2), str(list_squares_output[1]))
+
+    def test_load_from_file_more_args(self):
+        with self.assertRaises(TypeError):
+            Square.load_from_file(2)
+
 
 if __name__ == '__main__':
     unittest.main()

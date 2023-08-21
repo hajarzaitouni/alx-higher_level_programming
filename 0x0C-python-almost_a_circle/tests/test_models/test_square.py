@@ -406,7 +406,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.to_dictionary(), valid_output)
 
     def test_to_dict_compare(self):
-        """Testing with updating the attribute of a second rectangle"""
+        """Testing with updating the attribute of a second Square"""
         s1 = Square(10, 2, 1, 89)
         s2 = Square(1, 1)
         s1_dictionary = s1.to_dictionary()

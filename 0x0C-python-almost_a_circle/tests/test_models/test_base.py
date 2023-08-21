@@ -157,6 +157,45 @@ class TestBase(unittest.TestCase):
         with self.assertRaises(TypeError):
             Square.save_to_file([s1], 3)
 
+    def test_from_json_type(self):
+        """Testing type of the output"""
+        list_input = [
+                {'id': 89, 'width': 10, 'height': 4, 'x': 1, 'y': 2}
+                ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(type(list_output), list)
+
+    def test_from_json_Rectangle(self):
+        """Testing the output given from_json_string"""
+        list_input = [
+                {'id': 89, 'width': 10, 'height': 4, 'x': 1, 'y': 2},
+                {'id': 7, 'width': 1, 'height': 7, 'x': 1, 'y': 2}
+                ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_empty(self):
+        """Testing empty json_string"""
+        list_output = Rectangle.from_json_string("[]")
+        self.assertEqual([], list_output)
+
+    def test_from_json_None(self):
+        """Testing json_string is None"""
+        list_output = Rectangle.from_json_string(None)
+        self.assertEqual([], list_output)
+
+    def test_from_json_no_args(self):
+        """Testing from_json with no arguments"""
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string()
+
+    def test_from_json_more_args(self):
+        """Testing from json string with more than one argument"""
+        with self.assertRaises(TypeError):
+            Rectangle.from_json_string("[]", 3)
+
 
 if __name__ == '__main__':
     unittest.main()

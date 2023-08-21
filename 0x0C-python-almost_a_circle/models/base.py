@@ -54,3 +54,14 @@ class Base:
             else:
                 outfile.write(cls.to_json_string([cl.to_dictionary()
                                                   for cl in list_objs]))
+
+    @staticmethod
+    def from_json_string(json_string):
+        """returns the list of the JSON string representation json_string
+
+        Args:
+            json_string (str): JSON string representation of list of dict
+        """
+        if json_string is None or json_string == "[]":
+            return []
+        return json.loads(json_string)

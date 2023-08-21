@@ -381,6 +381,26 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "height must be > 0"):
             r1.update(id=89, height=0, x=-3)
 
+    def test_to_dict(self):
+        """Testing the output to dictionary"""
+        r1 = Rectangle(2, 4, 3, 2, 89)
+        valid_output = {'x': 3, 'y': 2, 'id': 89, 'height': 4, 'width': 2}
+        self.assertEqual(r1.to_dictionary(), valid_output)
+
+    def test_to_dict_compare(self):
+        """Testing the output with update the attributes"""
+        r1 = Rectangle(2, 4, 3, 2, 89)
+        r2 = Rectangle(1, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2.update(**r1_dictionary)
+        self.assertNotEqual(r1, r2)
+
+    def test_to_dict_more_args(self):
+        """Testing to_dict with too many arguments"""
+        r1 = Rectangle(2, 4, 3, 2, 89)
+        with self.assertRaises(TypeError):
+            r1.to_dictionary(1)
+
 
 if __name__ == '__main__':
     unittest.main()

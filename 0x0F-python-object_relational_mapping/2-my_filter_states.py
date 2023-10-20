@@ -17,7 +17,7 @@ if __name__ == "__main__":
                         )
     mycursor = db.cursor()
     sql_query = """SELECT * \
-                    FROM states WHERE name = '{}' \
+            FROM states WHERE name = '{:s}' \
                     ORDER by id ASC""".format(sys.argv[4])
     mycursor.execute(sql_query)
     rows = mycursor.fetchall()
